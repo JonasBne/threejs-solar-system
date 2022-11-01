@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {createPlanet} from "./createPlanet";
 
 // canvas
 const canvas = document.getElementsByClassName('webgl')[0] as HTMLCanvasElement;
@@ -19,23 +20,12 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 
 // planets
-const sunGeo = new THREE.SphereGeometry(16, 32, 32);
-const sunMat = new THREE.MeshBasicMaterial({color: 'yellow'});
-const sun = new THREE.Mesh(sunGeo, sunMat);
-scene.add(sun);
+const sun = createPlanet(16, 'yellow');
+scene.add(sun.mesh);
 
-const mercuryGeo = new THREE.SphereGeometry(4, 32, 32);
-const mercuryMat = new THREE.MeshBasicMaterial({color: 'green'});
-const mercury = new THREE.Mesh(mercuryGeo, mercuryMat);
-// change default position because it is hidden behind the sun
-mercury.position.x = 20;
-mercury.position.z = 10;
-
-// invisible parent object at same position as sun
-// to allow for children elements to rotate at a different speed (instead of adding them as children of the sun mesh)
-const mercuryParent = new THREE.Object3D();
-scene.add(mercuryParent);
-mercuryParent.add(mercury);
+const mercury = createPlanet(4, 'green', { x: 20, y: 0, z: 10 });
+scene.add(mercury.meshParent);
+mercury.meshParent.add(mercury.mesh);
 
 // renderer
 const renderer = new THREE.WebGLRenderer({
@@ -48,9 +38,12 @@ const animate = () => {
     // enable damping
     controls.update()
     // rotation of planets
-    sun.rotation.y += 0.004;
-    mercury.rotation.y += 0.004;
-    mercuryParent.rotation.y += 0.03;
+    sun.mesh.rotation.y += 0.004;
+
+    mercury.mesh.rotation.y += 0.004;
+    // make the invisible parent of mercury rotate at a faster speed than the sun
+    // so that mercury itself rotates faster around the sun, than the rotation of the sun itself
+    mercury.meshParent.rotation.y += 0.03;
     // render scene
     renderer.render(scene, camera);
     // pass reference to itself to create infinite loop of frames
