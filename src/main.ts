@@ -1,13 +1,25 @@
 import './style.css'
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import {createPlanet} from "./createPlanet";
+import {Sun} from "./planets/Sun";
+import {Mercury} from "./planets/Mercury";
+import {textures} from "./textures";
 
 // canvas
 const canvas = document.getElementsByClassName('webgl')[0] as HTMLCanvasElement;
 
 // initiate a scene
 const scene = new THREE.Scene();
+const textureLoader = new THREE.CubeTextureLoader();
+const starTexture = textureLoader.load([
+    textures.stars,
+    textures.stars,
+    textures.stars,
+    textures.stars,
+    textures.stars,
+    textures.stars,
+]);
+scene.background = starTexture;
 
 // camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -20,12 +32,10 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 
 // planets
-const sun = createPlanet(16, 'yellow');
-scene.add(sun.mesh);
+scene.add(Sun.mesh);
 
-const mercury = createPlanet(4, 'green', { x: 20, y: 0, z: 10 });
-scene.add(mercury.meshParent);
-mercury.meshParent.add(mercury.mesh);
+scene.add(Mercury.meshParent);
+Mercury.meshParent.add(Mercury.mesh);
 
 // renderer
 const renderer = new THREE.WebGLRenderer({
@@ -38,12 +48,12 @@ const animate = () => {
     // enable damping
     controls.update()
     // rotation of planets
-    sun.mesh.rotation.y += 0.004;
+    Sun.mesh.rotation.y += 0.004;
 
-    mercury.mesh.rotation.y += 0.004;
+    Mercury.mesh.rotation.y += 0.004;
     // make the invisible parent of mercury rotate at a faster speed than the sun
     // so that mercury itself rotates faster around the sun, than the rotation of the sun itself
-    mercury.meshParent.rotation.y += 0.03;
+    Mercury.meshParent.rotation.y += 0.008;
     // render scene
     renderer.render(scene, camera);
     // pass reference to itself to create infinite loop of frames
@@ -51,3 +61,5 @@ const animate = () => {
 }
 
 animate();
+
+// TODO: add resize functionality and pixel ratio
