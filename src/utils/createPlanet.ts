@@ -8,14 +8,17 @@ interface IProps {
       z?: number;
     };
     size: number;
-    texture?: string;
+    texture: string;
 }
 
 const textureLoader = new THREE.TextureLoader();
 
 export const createPlanet = ({color, position, size, texture}: IProps) => {
+    const planetTexture = textureLoader.load(texture);
+
     const geometry = new THREE.SphereGeometry(size, 32, 32);
-    const material = new THREE.MeshBasicMaterial({color, map: texture ? textureLoader.load(texture) : null});
+    const material = new THREE.MeshBasicMaterial({color, map: planetTexture });
+
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(position?.x || 0, position?.y || 0, position?.z || 0);

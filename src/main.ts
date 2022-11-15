@@ -7,6 +7,34 @@ import {textures} from "./textures";
 import {Jupiter} from "./planets/Jupiter";
 import {Earth} from "./planets/Earth";
 
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+}
+
+// resize handler
+window.addEventListener('resize', () => {
+    // update sizes
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    // update camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+
+    // update renderer and pixel ration
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+})
+
+// fullscreen handler
+window.addEventListener('dblclick', () => {
+    if (!document.fullscreenElement) {
+        return canvas.requestFullscreen();
+    }
+    return document.exitFullscreen();
+})
+
 // canvas
 const canvas = document.getElementsByClassName('webgl')[0] as HTMLCanvasElement;
 
@@ -24,7 +52,7 @@ const starTexture = textureLoader.load([
 scene.background = starTexture;
 
 // camera
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000);
 camera.position.y = 100;
 camera.position.z = 200;
 scene.add(camera);
@@ -73,5 +101,3 @@ const animate = () => {
 }
 
 animate();
-
-// TODO: add resize functionality and pixel ratio
