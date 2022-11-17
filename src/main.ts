@@ -8,6 +8,7 @@ import {Venus} from "./planets/Venus";
 import {Earth} from "./planets/Earth";
 import {Mars} from "./planets/Mars";
 import {Jupiter} from "./planets/Jupiter";
+import {Saturn} from "./planets/Saturn";
 
 /*
 * full screen and resizing
@@ -53,7 +54,7 @@ scene.background = starsBackgroundTexture;
 /*
 * camera
  */
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 2000);
 camera.position.z = 250;
 scene.add(camera);
 
@@ -82,6 +83,9 @@ Mars.meshParent.add(Mars.mesh);
 
 scene.add(Jupiter.meshParent);
 Jupiter.meshParent.add(Jupiter.mesh);
+
+scene.add(Saturn.meshParent);
+Saturn.meshParent.add(Saturn.mesh);
 
 //
 // scene.add(Jupiter.meshParent);
@@ -117,6 +121,7 @@ const animate = () => {
     Earth.meshParent.rotation.y += 0.00365;
     Mars.meshParent.rotation.y += 0.00182;
     Jupiter.meshParent.rotation.y += 0.000182;
+    Saturn.meshParent.rotation.y += 0.000088;
     // Jupiter.meshParent.rotation.y += 0.002;
     // Earth.meshParent.rotation.y += -0.001;
     // render scene
