@@ -1,4 +1,4 @@
 import {createPlanet} from "../utils/createPlanet";
-import {textures} from "../textures";
+import {mercuryTexture} from "../textures";
 
-export const Mercury = createPlanet({ position: { x: 40, y: 0, z: 10 },  size: 4, texture: textures.mercury });
+export const Mercury = createPlanet({ position: { x: 40, y: -5, z: 10 },  size: 3, texture: mercuryTexture });

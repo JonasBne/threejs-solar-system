@@ -1,4 +1,4 @@
 import {createPlanet} from "../utils/createPlanet";
-import {textures} from "../textures";
+import {earthTexture} from "../textures";
 
-export const Earth = createPlanet({ position: { x: 20, y: 25, z: -40 },  size: 6, texture: textures.earth})
+export const Earth = createPlanet({ position: { x: 0, y: 10, z: -100 },  size: 9, texture: earthTexture})

@@ -2,7 +2,6 @@ import * as THREE from "three";
 import {Texture} from "three";
 
 interface IProps {
-    color?: string;
     position?: {
       x?: number;
       y?: number;
@@ -12,9 +11,9 @@ interface IProps {
     texture: Texture;
 }
 
-export const createPlanet = ({color, position, size, texture}: IProps) => {
+export const createPlanet = ({ position, size, texture}: IProps) => {
     const geometry = new THREE.SphereGeometry(size, 32, 32);
-    const material = new THREE.MeshBasicMaterial({color, map: texture });
+    const material = new THREE.MeshBasicMaterial({ map: texture });
 
     const mesh = new THREE.Mesh(geometry, material);
 
