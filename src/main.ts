@@ -3,13 +3,6 @@ import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {Sun} from "./planets/Sun";
 import {starsBackgroundTexture} from "./textures";
-import {Mercury} from "./planets/Mercury";
-import {Venus} from "./planets/Venus";
-import {Earth} from "./planets/Earth";
-import {Mars} from "./planets/Mars";
-import {Jupiter} from "./planets/Jupiter";
-import {Saturn} from "./planets/Saturn";
-
 /*
 * full screen and resizing
  */
@@ -69,23 +62,23 @@ controls.enableDamping = true;
  */
 scene.add(Sun.mesh);
 
-scene.add(Mercury.meshParent);
-Mercury.meshParent.add(Mercury.mesh);
-
-scene.add(Venus.meshParent);
-Venus.meshParent.add(Venus.mesh);
-
-scene.add(Earth.meshParent);
-Earth.meshParent.add(Earth.mesh);
-
-scene.add(Mars.meshParent);
-Mars.meshParent.add(Mars.mesh);
-
-scene.add(Jupiter.meshParent);
-Jupiter.meshParent.add(Jupiter.mesh);
-
-scene.add(Saturn.meshParent);
-Saturn.meshParent.add(Saturn.mesh);
+// scene.add(Mercury.meshParent);
+// Mercury.meshParent.add(Mercury.mesh);
+//
+// scene.add(Venus.meshParent);
+// Venus.meshParent.add(Venus.mesh);
+//
+// scene.add(Earth.meshParent);
+// Earth.meshParent.add(Earth.mesh);
+//
+// scene.add(Mars.meshParent);
+// Mars.meshParent.add(Mars.mesh);
+//
+// scene.add(Jupiter.meshParent);
+// Jupiter.meshParent.add(Jupiter.mesh);
+//
+// scene.add(Saturn.meshParent);
+// Saturn.meshParent.add(Saturn.mesh);
 
 //
 // scene.add(Jupiter.meshParent);
@@ -105,25 +98,24 @@ const animate = () => {
     // enable damping
     controls.update()
     // rotation of planets
-    Sun.mesh.rotation.y += 0.004;
+    // Sun.mesh.rotation.y += 0.004;
 
-    Mercury.mesh.rotation.y += 0.004;
-    Venus.mesh.rotation.y += 0.004;
-    Earth.mesh.rotation.y += 0.002;
-    Mars.mesh.rotation.y += 0.001;
-    Jupiter.mesh.rotation.y += 0.001;
-    // Jupiter.mesh.rotation.z += 0.002;
-    // Earth.mesh.rotation.y += -0.002;
+    // Mercury.mesh.rotation.y += 0.004;
+    // Venus.mesh.rotation.y += 0.004;
+    // Earth.mesh.rotation.y += 0.002;
+    // Mars.mesh.rotation.y += 0.001;
+    // Jupiter.mesh.rotation.y += 0.001;
+
     // make the invisible parent of mercury rotate at a faster speed than the sun
     // so that mercury itself rotates faster around the sun, than the rotation of the sun itself
-    Mercury.meshParent.rotation.y += 0.0088;
-    Venus.meshParent.rotation.y += 0.00225;
-    Earth.meshParent.rotation.y += 0.00365;
-    Mars.meshParent.rotation.y += 0.00182;
-    Jupiter.meshParent.rotation.y += 0.000182;
-    Saturn.meshParent.rotation.y += 0.000088;
-    // Jupiter.meshParent.rotation.y += 0.002;
-    // Earth.meshParent.rotation.y += -0.001;
+
+    // Mercury.meshParent.rotation.y += 0.0088;
+    // Venus.meshParent.rotation.y += 0.00225;
+    // Earth.meshParent.rotation.y += 0.00365;
+    // Mars.meshParent.rotation.y += 0.00182;
+    // Jupiter.meshParent.rotation.y += 0.000182;
+    // Saturn.meshParent.rotation.y += 0.000088;
+
     // render scene
     renderer.render(scene, camera);
     // pass reference to itself to create infinite loop of frames
