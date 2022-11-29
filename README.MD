@@ -14,13 +14,14 @@ This is a very rudimentary roadmap of what I try to accomplish and might change 
 - [x] Create a scene
 - [x] Create planets
 - [x] Make the planets orbit the sun
-- [x] Make the sun glow
+- [ ] Make the sun glow
 - [ ] Add light to and shadow (sun should lighten up surrounding planets)
 - [ ] Use a better scale for orbit speed and planet sizes
 - [ ] Add missing planets
 - [ ] Draw the orbit of planets with lines on the scene
 - [ ] Add modals that display extra information about a planet (R3F)
 - [ ] Adjust zooming so that it's blocked from a certain level of zoom in/out
+- [ ] Add loading screen
 
 ### Available scripts
 

@@ -3,9 +3,9 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Sun } from './planets/Sun';
 import { starsBackgroundTexture } from './textures';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+// import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 /*
  * full screen and resizing
@@ -113,20 +113,20 @@ renderer.setSize(window.innerWidth, window.innerHeight);
  * post-processing effects
  */
 
-const effectComposer = new EffectComposer(renderer);
-effectComposer.setSize(sizes.width, sizes.height);
-effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-const renderPass = new RenderPass(scene, camera);
-effectComposer.addPass(renderPass);
-
-const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight),
-  2,
-  0.1,
-  0.1,
-);
-effectComposer.addPass(bloomPass);
+// const effectComposer = new EffectComposer(renderer);
+// effectComposer.setSize(sizes.width, sizes.height);
+// effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+//
+// const renderPass = new RenderPass(scene, camera);
+// effectComposer.addPass(renderPass);
+//
+// const bloomPass = new UnrealBloomPass(
+//   new THREE.Vector2(window.innerWidth, window.innerHeight),
+//   2,
+//   0.1,
+//   0.1,
+// );
+// effectComposer.addPass(bloomPass);
 
 /*
  * animation loop
@@ -155,7 +155,7 @@ const animate = () => {
   // Saturn.meshParent.rotation.y += 0.000088;
 
   // render scene
-  effectComposer.render();
+  renderer.render(scene, camera);
   // pass reference to itself to create infinite loop of frames
   window.requestAnimationFrame(animate);
 };
