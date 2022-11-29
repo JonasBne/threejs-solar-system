@@ -3,15 +3,13 @@
 ### Description
 
 I am currently learning Three.js with the help of [three.js-journey](https://threejs-journey.com/). I use this repo
-to practice theory that I've learned. The goal is to keep updating this demo project each time I've discovered new
-things which
-are relevant to my solar system demo. For the moment I am using plain three.js with TypeScript. In a later stage, I'll
-refactor the application
-to React Three Fiber.
+to practice the theory that I've learned. My goal is to update this project every time I have learned something new (
+if it can be applied to this demo). For the moment I am using plain three.js with TypeScript. In a later stage, I'll
+refactor the application to React Three Fiber.
 
 ### Roadmap
 
-This is a very rudimentary roadmap I will try to accomplish.
+This is a very rudimentary roadmap of what I try to accomplish and might change over time.
 
 - [x] Create a scene
 - [x] Create planets
@@ -29,6 +27,7 @@ This is a very rudimentary roadmap I will try to accomplish.
 Run your local development server.
 
 ```bash
+npm install
 npm run dev
 ```
 
