@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Sun } from './planets/Sun';
 import { starsBackgroundTexture } from './textures';
+import { Mercury } from './planets/Mercury';
 // import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 // import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 // import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
@@ -77,8 +78,8 @@ controls.enableDamping = true;
 
 scene.add(Sun.mesh);
 
-// scene.add(Mercury.meshParent);
-// Mercury.meshParent.add(Mercury.mesh);
+scene.add(Mercury.meshParent);
+Mercury.meshParent.add(Mercury.mesh);
 //
 // scene.add(Venus.meshParent);
 // Venus.meshParent.add(Venus.mesh);
@@ -127,6 +128,18 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 //   0.1,
 // );
 // effectComposer.addPass(bloomPass);
+
+/*
+ * lights
+ */
+
+// basic light to lit up the materials
+const ambientLight = new THREE.AmbientLight(0x333333, 3);
+scene.add(ambientLight);
+
+// light to simulate sunlight
+const pointLight = new THREE.PointLight(0xffffff, 2, 300);
+scene.add(pointLight);
 
 /*
  * animation loop
